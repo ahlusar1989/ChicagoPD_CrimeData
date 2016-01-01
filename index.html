@@ -36,71 +36,127 @@
   
   <style>
 
-    .axis path,
+.axis path,
 
-    .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar:hover {
+  fill: orangered ;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+
+.container {
+  font: 12px "Arial", Impact, sans-serif;
+}
+
+
+#dc-magnitude-chart .x.axis text {
+text-anchor: end !important;
+transform: rotate(-35deg);
+font-size: 8px;
+}
+
+
+h4 span {
+  font-size:14px;
+  font-weight:normal;
+  }
+h2 {
+  float: right;
+}
+h2 span {
+  font-size:14px;
+  font-weight:normal;
+  }
+
+/*.example3 .navbar-brand {
+  height: 80px;
+}
+*/
+
+/*
+.example3 .navbar-brand>img {
+  padding: 7px 15px;
+}
+
+.example3 .nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.example3 .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+*/
+
+.navbar-inner{
+    /*height: 90px*/
+    min-height: 60px
     }
+.navbar .brand{
+    padding: 0 10px;
+}
+.navbar .nav > li > a {
+    padding: 20px 15px;
+    /*padding: 35px 15px;*/
+}
+.navbar .btn-navbar {
+    /*margin-right: 0px;*/
+    margin-top:15px;
+}
+.brand img{
+    margin-top: 5px
+}
+@media (max-width:768px) {
+    .brand img{
+        margin-bottom: 5px
 
-    .bar:hover {
-      fill: orangered ;
     }
-
-    .x.axis path {
-      display: none;
+    .navbar .btn-navbar{
+        /*margin-right: -15px;*/
     }
-
-    .d3-tip {
-      line-height: 1;
-      font-weight: bold;
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      border-radius: 2px;
+    .navbar .nav > li > a {
+        padding: 10px 15px;
     }
+}
 
-    /* Creates a small triangle extender for the tooltip */
-    .d3-tip:after {
-      box-sizing: border-box;
-      display: inline;
-      font-size: 10px;
-      width: 100%;
-      line-height: 1;
-      color: rgba(0, 0, 0, 0.8);
-      content: "\25BC";
-      position: absolute;
-      text-align: center;
-    }
-
-    /* Style northward tooltips differently */
-    .d3-tip.n:after {
-      margin: -1px 0 0 0;
-      top: 100%;
-      left: 0;
-    }
-
-
-
-    #dc-magnitude-chart .x.axis text {
-    text-anchor: end !important;
-    transform: rotate(-35deg);
-    font-size: 8px;
-    }
-
-
-    h4 span {
-      font-size:14px;
-      font-weight:normal;
-      }
-    h2 {
-      float: right;
-    }
-    h2 span {
-      font-size:14px;
-      font-weight:normal;
-      }
 
 
   </style>
@@ -120,17 +176,68 @@
     <!-- Morris Charts JavaScript -->
      <script src="./bower_components/raphael/raphael-min.js"></script>
      <script src="./bower_components/morrisjs/morris.min.js"></script>
-     <script src="./javascripts/morris-data.js"></script>
+     <!--  <script src="./javascripts/morris-data.js"></script> -->
 
     <!-- Custom Theme JavaScript -->
     <script src="./javascripts/sb-admin-2.js"></script>
 
 
+<div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">
+            <!-- UNCOMMENT THE CSS VALUES TO TEST OTHER DIMENTIONS -->
+            <!-- <img src="http://placehold.it/150x80&text=Logo" alt=""> -->
+            <img src="./assets/3502_Wynyard_Logo.png" width = "100" height = "100"alt="Wynyard">
+            </a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<!--             <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> -->
+            </a>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home </a></li>
+        <li><a href="#">About</a></li>   
+        </div>
 
-          <div class='container' style='font: 12px "Gill Sans", Impact, sans-serif;'>
+  </div>
+
+
+
+
+
+<!-- 
+<div class="example3">
+  <nav class="navbar navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar3">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand"><img src="./assets/3502_Wynyard_Logo.png" width = "120" height = "120"alt="Wynyard">
+        </a>
+      </div>
+      <div id="navbar3" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+
+        </ul>
+      </div>
+      <!/.nav-collapse -->
+    <!-- </div> -->
+    <!--/.container-fluid -->
+ <!--  </nav>
+</div>
+ -->
+
+    <div class='container' style='font: 12px "Gill Sans", Impact, sans-serif;'>
             <div class="dc-data-count" style="float: left;">
               <h2>
-              Chicago City Crime Stats (01/01/2015 -12/23/2015)
+              Chicago City Crime Stats (01/01/2015 -12/15/2015)
                 <span>
                   <span class="filter-count"></span>
                    selected out of 
@@ -245,9 +352,6 @@ function print_filter(filter){
   if (typeof(f.dimension) != "undefined") {f=f.dimension(function(d) { return "";}).top(Infinity);}else{}
   console.log(filter+"("+f.length+") = "+JSON.stringify(f).replace("[","[\n\t").replace(/}\,/g,"},\n\t").replace("]","\n]"));
 } 
-
-
-
 
 // Create the dc.js chart objects & link to div
 var dataTable = dc.dataTable("#dc-table-graph");
@@ -471,6 +575,18 @@ dataTable.width(960).height(800)
   d3.selectAll(".bar").call(barTip);
   d3.selectAll(".bar").on('mouseover', barTip.show)
       .on('mouseout', barTip.hide);  
+
+
+// window.onresize = function(event) {
+//   var newWidth = document.getElementById('row').offsetWidth;
+//   timeChart.width(newWidth)
+//     .transitionDuration(0);
+//   islandChart.transitionDuration(0);
+//   dc.renderAll();
+//   timeChart.transitionDuration(750);
+//   islandChart.transitionDuration(750);
+// };
+
 
   
 });
